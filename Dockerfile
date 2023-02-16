@@ -1,11 +1,4 @@
-FROM continuumio/miniconda3:4.5.12
+FROM umichbfxcore/rsem_star:0.1.1
 
-ARG env_name
-
-# env_name is supplied as --build-arg to docker, and is identical between yaml file basename and environment name specified within it
-COPY ${env_name}.yaml /tmp/
-
-RUN conda env create -f /tmp/${env_name}.yaml && conda clean --all -y
-
-ENV PATH /opt/conda/envs/${env_name}/bin:$PATH
-
+# Modify STAR params
+RUN perl -pe 's/^(.*" --runThreadN .*)/" --limitOutSJcollapsed 2500000 " \.\n$1/' -i /opt/conda/envs/rsem_star/bin/rsem-calculate-expression

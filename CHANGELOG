@@ -1,0 +1,5 @@
+_limitOutSJcollapsed_2_5M (2023-02-15)
+--------------------------------------
+- Modified STAR command in rsem-calculate-expression
+  - Now has argument `--limitOutSJcollapsed 2500000`
+
